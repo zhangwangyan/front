@@ -16,11 +16,11 @@
             <div class="layui-form layui-form-pane">
               <form method="post">
                 <div class="layui-form-item">
-                  <label for="L_email" class="layui-form-label">用户名</label>
+                  <label for="L_email" class="layui-form-label">邮箱账号</label>
                   <div class="layui-input-inline">
                     <input type="text"  v-model="username"
                            v-validate="'required|email'"
-                           name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                           name="username" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
                   </div>
                   <div class="layui-form-mid">
                     <span style="color: #c00;">{{errors.first('username')}}</span>

@@ -10,6 +10,17 @@ const getCode = async () => {
   return result
 }
 
+const forget = async (option) => {
+  let result = ''
+  try {
+    result = await axios.post('/forget', { ...option })
+  } catch (e) {
+    console.log(e)
+  }
+  return result
+}
+
 export {
-  getCode
+  getCode,
+  forget
 }
