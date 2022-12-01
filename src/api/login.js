@@ -1,13 +1,7 @@
-import axios from 'axios'
+import axios from '@/util/axios'
 
 const getCode = async () => {
-  let result = ''
-  try {
-    result = await axios.get('/getCaptcha')
-  } catch (e) {
-    console.log(e)
-  }
-  return result
+  return axios.get('/getCaptcha')
 }
 
 const forget = async (option) => {
