@@ -16,42 +16,49 @@
             <div class="layui-form layui-form-pane">
               <form method="post">
                 <div class="layui-form-item">
-                  <label for="L_email" class="layui-form-label">邮箱账号</label>
-                  <div class="layui-input-inline">
-                    <input type="text"  v-model="username"
-                           v-validate="'required|email'"
-                           name="username" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
-                  </div>
-                  <div class="layui-form-mid">
-                    <span style="color: #c00;">{{errors.first('username')}}</span>
-                  </div>
+                  <label for="L_email" class="layui-form-label">用户名</label>
+                  <validation-provider rules="required|email" v-slot="{errors}">
+                    <div class="layui-input-inline">
+                      <input type="text"  v-model="username"
+                             name="email" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid">
+                      <span style="color: #c00;">{{errors[0]}}</span>
+                    </div>
+                  </validation-provider>
+
                 </div>
                 <div class="layui-form-item">
                   <label for="L_pass" class="layui-form-label">密码</label>
-                  <div class="layui-input-inline">
-                    <input type="password"  v-model="password"
-                           v-validate="'required|min:4'"
-                           placeholder="请输入密码" name="password"  autocomplete="off" class="layui-input">
-                  </div>
-                  <div class="layui-form-mid">
-                    <span style="color: #c00;">{{errors.first('password')}}</span>
-                  </div>
+                  <validation-provider rules="required|min:6" v-slot="{errors}">
+                    <div class="layui-input-inline">
+                      <input type="password"  v-model="password"
+                             placeholder="请输入密码" name="password"  autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid">
+                      <span style="color: #c00;">{{errors[0]}}</span>
+                    </div>
+                  </validation-provider>
+
                 </div>
                 <div class="layui-form-item">
+                  <validation-provider rules="required|min:4" v-slot="{errors}">
                    <div class="layui-row">
                      <label for="L_vercode" class="layui-form-label">验证码</label>
-                     <div class="layui-input-inline">
-                       <input type="text"  v-model='code'
-                              v-validate="'required|min:4'"
-                              name="code"  placeholder="请输入验证码" autocomplete="off" class="layui-input">
-                     </div>
-                     <div class="layui-form-mid">
-                       <span  class="svg" style="color: #c00;" v-html="svg" @click="_getCode" ></span>
-                     </div>
+
+                       <div class="layui-input-inline">
+                         <input type="text"  v-model='code'
+                                name="code"  placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                       </div>
+                       <div class="layui-form-mid">
+                         <span  class="svg" style="color: #c00;" v-html="svg" @click="_getCode" ></span>
+                       </div>
+
                    </div>
                   <div class="layui-form-mid">
-                    <span style="color: #c00;">{{errors.first('code')}}</span>
+                    <span style="color: #c00;">{{errors[0]}}</span>
                   </div>
+                  </validation-provider>
                 </div>
                 <div class="layui-form-item">
                   <button class="layui-btn" lay-filter="*" lay-submit>立即登录</button>
@@ -77,10 +84,13 @@
 
 <script>
 import { getCode } from '@/api/login'
-
+import { ValidationProvider } from 'vee-validate'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'login',
+  components: {
+    ValidationProvider
+  },
   data () {
     return {
       username: '',
