@@ -1,17 +1,13 @@
-import axios from '@/util/axios'
+import axios from '@/util/request'
 
 const getCode = async () => {
   return axios.get('/getCaptcha')
 }
 
-const forget = async (option) => {
-  let result = ''
-  try {
-    result = await axios.post('/forget', { ...option })
-  } catch (e) {
-    console.log(e)
-  }
-  return result
+const forget = (option) => {
+  return axios.post('/forget', {
+    ...option
+  })
 }
 
 export {

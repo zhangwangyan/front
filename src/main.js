@@ -7,11 +7,6 @@ import '@/util/veevalidate'
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL =
-  process.env.NODE_ENV !== 'production'
-    ? 'http://localhost:3000'
-    : 'http://zhangwangyan.com'
-
 new Vue({
   router,
   store,
