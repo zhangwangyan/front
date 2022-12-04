@@ -85,6 +85,7 @@
 <script>
 import { getCode } from '@/api/login'
 import { ValidationProvider } from 'vee-validate'
+import uuid from 'uuid/v4'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'login',
@@ -100,11 +101,21 @@ export default {
     }
   },
   mounted () {
+    let sid = ''
+    if (localStorage.getItem('sid')) {
+      sid = localStorage.getItem('sid')
+    } else {
+      sid = uuid()
+      localStorage.setItem('sid', sid)
+    }
+    this.$store.commit('setSid', sid)
+    console.log(sid)
     this._getCode()
   },
   methods: {
     _getCode () {
-      getCode().then((res) => {
+      const sid = this.$store.state.sid
+      getCode(sid).then((res) => {
         this.svg = res.msg
       })
     }

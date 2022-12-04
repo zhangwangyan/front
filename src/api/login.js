@@ -1,7 +1,15 @@
 import axios from '@/util/request'
 
-const getCode = async () => {
-  return axios.get('/getCaptcha')
+const getCode = (sid) => {
+  // axios.request({
+  //  method: 'get',
+  //  url: '/getCaptcha'
+  // })
+  return axios.get('/getCaptcha', {
+    params: {
+      sid: sid
+    }
+  })
 }
 
 const forget = (option) => {

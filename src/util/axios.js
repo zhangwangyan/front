@@ -6,13 +6,13 @@ import axios from 'axios'
 import errorHandle from './errorHandle.js'
 
 class HttpRequest {
-  constructor (baseUrl) {
-    this.baseUrl = baseUrl
+  constructor (baseURL) {
+    this.baseUrl = baseURL
   }
 
   getInsideConfig () {
     const config = {
-      baseUrl: this.baseUrl,
+      baseURL: this.baseUrl,
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       },
