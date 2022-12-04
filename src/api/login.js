@@ -18,7 +18,14 @@ const forget = (option) => {
   })
 }
 
+const login = (loginInfo) => {
+  return axios.post('/login', {
+    ...loginInfo
+  })
+}
+
 export {
   getCode,
-  forget
+  forget,
+  login
 }
